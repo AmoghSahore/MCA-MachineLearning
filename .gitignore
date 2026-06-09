@@ -1,0 +1,56 @@
+
+---
+
+### `.gitignore`
+
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env
+
+# Python Testing
+.pytest_cache/
+.coverage
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Generated Data (optional)
+# Uncomment if datasets are large and shouldn't be tracked
+# datasets/
+# data/
+
+# Model Files (optional)
+# *.pkl
+# *.joblib
+# *.h5
+# *.keras
