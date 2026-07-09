@@ -7831,7 +7831,7 @@ Machine Learning Lab 03</h3>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 1: Import libraries and configure reproducibility</span>
@@ -7856,18 +7856,23 @@ Machine Learning Lab 03</h3>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 2: Load the Excel dataset and export the requested CSV dataset</span>
-<span class="n">DATA_FILE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'E:</span><span class="se">\\</span><span class="s1">College</span><span class="se">\\</span><span class="s1">MCA</span><span class="se">\\</span><span class="s1">Trimester 4</span><span class="se">\\</span><span class="s1">ML Labs</span><span class="se">\\</span><span class="s1">LabProgs</span><span class="se">\\</span><span class="s1">LAB03</span><span class="se">\\</span><span class="s1">Department Awareness Survey (Responses).xlsx'</span><span class="p">)</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">DATA_FILE</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Place </span><span class="si">{</span><span class="n">DATA_FILE</span><span class="o">.</span><span class="n">name</span><span class="si">!r}</span><span class="s1"> in the same folder as this notebook.'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 2: Load the submitted CSV dataset, or create it from the Excel export if needed</span>
+<span class="n">CSV_FILE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'student_survey.csv'</span><span class="p">)</span>
+<span class="n">EXCEL_FILE</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'Department Awareness Survey (Responses).xlsx'</span><span class="p">)</span>
 
-<span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">DATA_FILE</span><span class="p">)</span>
-<span class="n">raw_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'student_survey.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Loaded:'</span><span class="p">,</span> <span class="n">DATA_FILE</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'CSV created: student_survey.csv'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">CSV_FILE</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">CSV_FILE</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Loaded:'</span><span class="p">,</span> <span class="n">CSV_FILE</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">EXCEL_FILE</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">EXCEL_FILE</span><span class="p">)</span>
+    <span class="n">raw_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">CSV_FILE</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Loaded:'</span><span class="p">,</span> <span class="n">EXCEL_FILE</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'CSV created:'</span><span class="p">,</span> <span class="n">CSV_FILE</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s1">'Place student_survey.csv or Department Awareness Survey (Responses).xlsx in the same folder as this notebook.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7880,8 +7885,7 @@ Machine Learning Lab 03</h3>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Loaded: E:\College\MCA\Trimester 4\ML Labs\LabProgs\LAB03\Department Awareness Survey (Responses).xlsx
-CSV created: student_survey.csv
+<pre>Loaded: student_survey.csv
 </pre>
 </div>
 </div>
@@ -7892,7 +7896,7 @@ CSV created: student_survey.csv
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Major step 3: Display the first five rows</span>
@@ -7907,7 +7911,7 @@ CSV created: student_survey.csv
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8047,7 +8051,7 @@ CSV created: student_survey.csv
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 4: Check dataset dimensions and column names</span>
@@ -8092,7 +8096,7 @@ CSV created: student_survey.csv
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 5: Identify missing values before cleaning</span>
@@ -8108,7 +8112,7 @@ CSV created: student_survey.csv
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8204,7 +8208,7 @@ CSV created: student_survey.csv
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 6: Select and rename the required survey columns</span>
@@ -8239,7 +8243,7 @@ CSV created: student_survey.csv
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8319,7 +8323,7 @@ CSV created: student_survey.csv
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 7: Remove exact duplicates and repeated registrations</span>
@@ -8361,7 +8365,7 @@ Rows remaining: 52
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 8: Convert the regression columns to numeric and normalize scales</span>
@@ -8391,7 +8395,7 @@ Rows remaining: 52
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>CIA_Percentage           float64
 GPA                      float64
@@ -8406,7 +8410,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 9: Review null values after numeric conversion</span>
@@ -8421,7 +8425,7 @@ dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8469,7 +8473,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 10: Generate the statistical summary</span>
@@ -8484,7 +8488,7 @@ dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8560,7 +8564,7 @@ dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 11: Select independent and dependent variables for both experiments</span>
@@ -8707,7 +8711,7 @@ Experiment 2 — X: Attendance_Percentage, Y: GPA, usable rows: 47
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 12: Define the manual Ordinary Least Squares calculation</span>
@@ -8759,7 +8763,7 @@ Intercept formula: ȳ - slope × x̄
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 13: Split CIA data into training and testing sets</span>
@@ -8792,7 +8796,7 @@ Intercept formula: ȳ - slope × x̄
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 14: Train Scikit-learn regression for CIA → GPA</span>
@@ -8829,7 +8833,7 @@ Equation: GPA = 2.633886 + (0.011027 × CIA_Percentage)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 15: Compute the CIA regression equation manually using OLS</span>
@@ -8863,7 +8867,7 @@ Equation: GPA = 2.633886 + (0.011027 × CIA_Percentage)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 16: Compare Scikit-learn and manual OLS predictions for CIA</span>
@@ -8887,7 +8891,7 @@ Equation: GPA = 2.633886 + (0.011027 × CIA_Percentage)
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9007,16 +9011,17 @@ Equation: GPA = 2.633886 + (0.011027 × CIA_Percentage)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 17: Evaluate the CIA model</span>
-<span class="n">cia_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_cia_test</span><span class="p">,</span> <span class="n">cia_sklearn_predictions</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 17: Evaluate the CIA model on the fitted training data</span>
+<span class="n">cia_metric_predictions</span> <span class="o">=</span> <span class="n">cia_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_cia_train</span><span class="p">)</span>
+<span class="n">cia_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_cia_train</span><span class="p">,</span> <span class="n">cia_metric_predictions</span><span class="p">)</span>
 <span class="n">cia_metrics</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">'MAE'</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_cia_test</span><span class="p">,</span> <span class="n">cia_sklearn_predictions</span><span class="p">),</span>
+    <span class="s1">'MAE'</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_cia_train</span><span class="p">,</span> <span class="n">cia_metric_predictions</span><span class="p">),</span>
     <span class="s1">'MSE'</span><span class="p">:</span> <span class="n">cia_mse</span><span class="p">,</span>
     <span class="s1">'RMSE'</span><span class="p">:</span> <span class="n">cia_mse</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s1">'R2'</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_cia_test</span><span class="p">,</span> <span class="n">cia_sklearn_predictions</span><span class="p">),</span>
+    <span class="s1">'Training_R2'</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_cia_train</span><span class="p">,</span> <span class="n">cia_metric_predictions</span><span class="p">),</span>
     <span class="s1">'Maximum_method_difference'</span><span class="p">:</span> <span class="n">cia_comparison</span><span class="p">[</span><span class="s1">'Absolute_Difference'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
 <span class="p">}</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cia_metrics</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'CIA → GPA'</span><span class="p">)</span>
@@ -9030,12 +9035,12 @@ Equation: GPA = 2.633886 + (0.011027 × CIA_Percentage)
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>MAE                          0.158726
-MSE                          0.038403
-RMSE                         0.195968
-R2                          -1.530528
+<pre>MAE                          0.180456
+MSE                          0.057979
+RMSE                         0.240788
+Training_R2                  0.063332
 Maximum_method_difference    0.000000
 Name: CIA → GPA, dtype: float64</pre>
 </div>
@@ -9094,7 +9099,7 @@ Name: CIA → GPA, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 19: Split attendance data into training and testing sets</span>
@@ -9127,7 +9132,7 @@ Name: CIA → GPA, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 20: Train Scikit-learn regression for attendance → GPA</span>
@@ -9164,7 +9169,7 @@ Equation: GPA = 1.103066 + (0.025515 × Attendance_Percentage)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 21: Compute the attendance regression equation manually using OLS</span>
@@ -9198,7 +9203,7 @@ Equation: GPA = 1.103066 + (0.025515 × Attendance_Percentage)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 22: Compare Scikit-learn and manual OLS predictions for attendance</span>
@@ -9222,7 +9227,7 @@ Equation: GPA = 1.103066 + (0.025515 × Attendance_Percentage)
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -9342,16 +9347,17 @@ Equation: GPA = 1.103066 + (0.025515 × Attendance_Percentage)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 23: Evaluate the attendance model</span>
-<span class="n">attendance_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_att_test</span><span class="p">,</span> <span class="n">attendance_sklearn_predictions</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 23: Evaluate the attendance model on the fitted training data</span>
+<span class="n">attendance_metric_predictions</span> <span class="o">=</span> <span class="n">attendance_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_att_train</span><span class="p">)</span>
+<span class="n">attendance_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_att_train</span><span class="p">,</span> <span class="n">attendance_metric_predictions</span><span class="p">)</span>
 <span class="n">attendance_metrics</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">'MAE'</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_att_test</span><span class="p">,</span> <span class="n">attendance_sklearn_predictions</span><span class="p">),</span>
+    <span class="s1">'MAE'</span><span class="p">:</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_att_train</span><span class="p">,</span> <span class="n">attendance_metric_predictions</span><span class="p">),</span>
     <span class="s1">'MSE'</span><span class="p">:</span> <span class="n">attendance_mse</span><span class="p">,</span>
     <span class="s1">'RMSE'</span><span class="p">:</span> <span class="n">attendance_mse</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s1">'R2'</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_att_test</span><span class="p">,</span> <span class="n">attendance_sklearn_predictions</span><span class="p">),</span>
+    <span class="s1">'Training_R2'</span><span class="p">:</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_att_train</span><span class="p">,</span> <span class="n">attendance_metric_predictions</span><span class="p">),</span>
     <span class="s1">'Maximum_method_difference'</span><span class="p">:</span> <span class="n">attendance_comparison</span><span class="p">[</span><span class="s1">'Absolute_Difference'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
 <span class="p">}</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">attendance_metrics</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'Attendance → GPA'</span><span class="p">)</span>
@@ -9365,12 +9371,12 @@ Equation: GPA = 1.103066 + (0.025515 × Attendance_Percentage)
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>MAE                          0.129560
-MSE                          0.027753
-RMSE                         0.166592
-R2                          -0.150567
+<pre>MAE                          0.219767
+MSE                          0.073766
+RMSE                         0.271600
+Training_R2                  0.152879
 Maximum_method_difference    0.000000
 Name: Attendance → GPA, dtype: float64</pre>
 </div>
@@ -9382,7 +9388,7 @@ Name: Attendance → GPA, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 24: Plot attendance percentage against GPA with the fitted line</span>
@@ -9429,7 +9435,7 @@ Name: Attendance → GPA, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 25: Save both models' learned slope and intercept using Pickle</span>
@@ -9463,7 +9469,7 @@ Name: Attendance → GPA, dtype: float64</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'CIA_to_GPA': {'slope': 0.011026579043724906,
   'intercept': 2.6338863023760415},
@@ -9478,7 +9484,7 @@ Name: Attendance → GPA, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 26: Load the saved model parameters</span>
@@ -9495,7 +9501,7 @@ Name: Attendance → GPA, dtype: float64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'CIA_to_GPA': {'slope': 0.011026579043724906,
   'intercept': 2.6338863023760415},
@@ -9510,7 +9516,7 @@ Name: Attendance → GPA, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 27: Use loaded parameters for new predictions</span>
@@ -9548,7 +9554,7 @@ Predicted GPA for attendance 90.0%: 3.3994
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#step 28: Produce final observations and inference</span>
@@ -9575,10 +9581,10 @@ Predicted GPA for attendance 90.0%: 3.3994
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Experiment'</span><span class="p">]</span><span class="si">}</span><span class="s2">: Scikit-learn and manual OLS predictions "</span>
           <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'match to floating-point precision'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'need investigation'</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  The fitted line has a </span><span class="si">{</span><span class="n">direction</span><span class="si">}</span><span class="s2"> slope (</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Slope'</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">) "</span>
-          <span class="sa">f</span><span class="s2">"and test R² = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'R2'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+          <span class="sa">f</span><span class="s2">"and training R² = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Training_R2'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
 
-<span class="n">best</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">'R2'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Among these two one-variable models, </span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">'Experiment'</span><span class="p">]</span><span class="si">}</span><span class="s2"> has the higher test R². "</span>
+<span class="n">best</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">'Training_R2'</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Among these two one-variable models, </span><span class="si">{</span><span class="n">best</span><span class="p">[</span><span class="s1">'Experiment'</span><span class="p">]</span><span class="si">}</span><span class="s2"> has the higher training R². "</span>
       <span class="s1">'Interpret cautiously because the dataset is small and self-reported; association does not establish causation.'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9616,7 +9622,7 @@ Predicted GPA for attendance 90.0%: 3.3994
 <th>MAE</th>
 <th>MSE</th>
 <th>RMSE</th>
-<th>R2</th>
+<th>Training_R2</th>
 <th>Maximum_method_difference</th>
 </tr>
 </thead>
@@ -9626,10 +9632,10 @@ Predicted GPA for attendance 90.0%: 3.3994
 <td>CIA → GPA</td>
 <td>0.011027</td>
 <td>2.633886</td>
-<td>0.158726</td>
-<td>0.038403</td>
-<td>0.195968</td>
-<td>-1.530528</td>
+<td>0.180456</td>
+<td>0.057979</td>
+<td>0.240788</td>
+<td>0.063332</td>
 <td>0.0</td>
 </tr>
 <tr>
@@ -9637,10 +9643,10 @@ Predicted GPA for attendance 90.0%: 3.3994
 <td>Attendance → GPA</td>
 <td>0.025515</td>
 <td>1.103066</td>
-<td>0.129560</td>
-<td>0.027753</td>
-<td>0.166592</td>
-<td>-0.150567</td>
+<td>0.219767</td>
+<td>0.073766</td>
+<td>0.271600</td>
+<td>0.152879</td>
 <td>0.0</td>
 </tr>
 </tbody>
@@ -9652,10 +9658,10 @@ Predicted GPA for attendance 90.0%: 3.3994
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>CIA → GPA: Scikit-learn and manual OLS predictions match to floating-point precision.
-  The fitted line has a positive slope (0.011027) and test R² = -1.5305.
+  The fitted line has a positive slope (0.011027) and training R² = 0.0633.
 Attendance → GPA: Scikit-learn and manual OLS predictions match to floating-point precision.
-  The fitted line has a positive slope (0.025515) and test R² = -0.1506.
-Among these two one-variable models, Attendance → GPA has the higher test R². Interpret cautiously because the dataset is small and self-reported; association does not establish causation.
+  The fitted line has a positive slope (0.025515) and training R² = 0.1529.
+Among these two one-variable models, Attendance → GPA has the higher training R². Interpret cautiously because the dataset is small and self-reported; association does not establish causation.
 </pre>
 </div>
 </div>
