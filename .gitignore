@@ -44,6 +44,15 @@ Thumbs.db
 *.tmp
 *.temp
 
+# Ignore Microsoft Word documents
+*.docx
+*.doc
+
+# Ignore temporary Word lock files
+~$*.docx
+~$*.doc
+
+
 # Generated Data (optional)
 # Uncomment if datasets are large and shouldn't be tracked
 # datasets/
