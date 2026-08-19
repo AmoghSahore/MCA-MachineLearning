@@ -1,0 +1,5 @@
+kernel,best_cv_macro_f1,best_parameters
+linear,0.9644208546635135,"{""svc__C"": 0.1}"
+rbf,0.9740924634913869,"{""svc__C"": 10, ""svc__gamma"": ""scale""}"
+sigmoid,0.9621140585342045,"{""svc__C"": 1, ""svc__gamma"": ""scale""}"
+poly,0.9520109418477783,"{""svc__C"": 10, ""svc__degree"": 3, ""svc__gamma"": 0.1}"

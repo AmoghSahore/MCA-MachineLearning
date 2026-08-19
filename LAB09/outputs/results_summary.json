@@ -1,0 +1,88 @@
+{
+  "data": {
+    "wdbc_samples": 569,
+    "wdbc_predictive_features": 30,
+    "wine_samples": 178,
+    "wine_original_features": 13
+  },
+  "svm": {
+    "split": "80% train / 20% test, stratified, random_state=42",
+    "selection": "5-fold stratified cross-validation maximizing macro F1",
+    "best_test_kernel_by_malignant_f1": "linear",
+    "best_cv_macro_f1": 0.9644208546635135,
+    "best_parameters": {
+      "svc__C": 0.1
+    },
+    "test_metrics": [
+      {
+        "kernel": "linear",
+        "accuracy": 0.9824561403508771,
+        "precision_malignant": 1.0,
+        "recall_malignant": 0.9523809523809523,
+        "f1_malignant": 0.975609756097561,
+        "true_benign": 72,
+        "false_malignant": 0,
+        "false_benign": 2,
+        "true_malignant": 40
+      },
+      {
+        "kernel": "rbf",
+        "accuracy": 0.9736842105263158,
+        "precision_malignant": 1.0,
+        "recall_malignant": 0.9285714285714286,
+        "f1_malignant": 0.9629629629629629,
+        "true_benign": 72,
+        "false_malignant": 0,
+        "false_benign": 3,
+        "true_malignant": 39
+      },
+      {
+        "kernel": "sigmoid",
+        "accuracy": 0.9473684210526315,
+        "precision_malignant": 0.9736842105263158,
+        "recall_malignant": 0.8809523809523809,
+        "f1_malignant": 0.925,
+        "true_benign": 71,
+        "false_malignant": 1,
+        "false_benign": 5,
+        "true_malignant": 37
+      },
+      {
+        "kernel": "poly",
+        "accuracy": 0.9385964912280702,
+        "precision_malignant": 0.9487179487179487,
+        "recall_malignant": 0.8809523809523809,
+        "f1_malignant": 0.9135802469135802,
+        "true_benign": 70,
+        "false_malignant": 2,
+        "false_benign": 5,
+        "true_malignant": 37
+      }
+    ]
+  },
+  "dimensionality_reduction": {
+    "pca_pc1_explained_variance": 0.3619884809992633,
+    "pca_pc2_explained_variance": 0.19207490257008947,
+    "pca_first_two_cumulative_variance": 0.5540633835693527,
+    "pca_components_for_95_percent": 10,
+    "pca_variance_at_selected_components": 0.9616971684450643,
+    "pca_top_absolute_loadings_pc1": [
+      "flavanoids",
+      "total_phenols",
+      "od280_od315",
+      "proanthocyanins",
+      "nonflavanoid_phenols"
+    ],
+    "pca_top_absolute_loadings_pc2": [
+      "color_intensity",
+      "alcohol",
+      "proline",
+      "ash",
+      "magnesium"
+    ],
+    "pca_silhouette_score_2d": 0.5261540407384621,
+    "lda_silhouette_score_2d": 0.663169998607709,
+    "pca_class_separation_ratio_2d": 3.4055064991569,
+    "lda_class_separation_ratio_2d": 6.605104240340975
+  }
+}

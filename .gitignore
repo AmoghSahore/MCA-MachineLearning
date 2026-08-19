@@ -48,6 +48,9 @@ Thumbs.db
 *.docx
 *.doc
 
+# Generated lab documentation
+/labDocs/
+
 # Ignore temporary Word lock files
 ~$*.docx
 ~$*.doc
